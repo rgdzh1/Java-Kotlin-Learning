@@ -1,4 +1,4 @@
-package com.yey.kotlin2
+package com.yey.kotlq
 
 class `5-Person单例` private constructor() {
     public var mPerson: `5-Person单例`? = null

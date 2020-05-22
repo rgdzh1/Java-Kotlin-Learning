@@ -1,4 +1,5 @@
-package com.yey.kotlin2.a
+package com.yey.kotlin2.`1-基础`.x
+
 
 // 变量定义
 var n: Int = 30  // Int 是数据类型

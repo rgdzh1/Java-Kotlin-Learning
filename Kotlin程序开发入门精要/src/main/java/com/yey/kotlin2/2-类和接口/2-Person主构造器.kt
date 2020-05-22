@@ -1,4 +1,4 @@
-package com.yey.kotlin2
+package com.yey.kots
 
 //class Person constructor(name: String) {
 // constructor(name: String) 主构造器,是类头的一部分

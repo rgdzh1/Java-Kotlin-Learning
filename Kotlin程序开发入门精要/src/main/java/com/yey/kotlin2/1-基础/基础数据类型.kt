@@ -1,4 +1,4 @@
-package com.yey.kotlin2.b
+package com.yey.kotlini
 
 var m: Int = 20
 var price: Double = 20.3

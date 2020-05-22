@@ -1,4 +1,4 @@
-package com.yey.kotlin2
+package com.yey.kotv
 
 // 如果类中声明了主构造器,那么所有第二构造器都需要调用主构造器,或通过另外一个第二构造器间接调用主构造器
 class `4-Person第二构造器调用主构造器`(age: Int) {
