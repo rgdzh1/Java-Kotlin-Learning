@@ -1,6 +1,7 @@
 # Kotlin-Study
-> Kotlin学习笔记
+> Kotlin语法学习笔记
 
+### Kotlin常见符号总结
 1. `?`可空类型:表示这个对象可能为空
 ```kotlin
 var str:String ?= "字符"
