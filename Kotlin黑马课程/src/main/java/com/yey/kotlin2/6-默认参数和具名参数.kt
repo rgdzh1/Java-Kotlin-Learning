@@ -1,4 +1,4 @@
-package com.yey.kotkk
+package com.yey.kotlin2y
 
 val mName = "小明"
 fun main(args: Array<String>) {

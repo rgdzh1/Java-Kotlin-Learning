@@ -1,4 +1,4 @@
-package com.yey.km
+package com.yey.kotlin2t
 
 fun main(args: Array<String>) {
     println(add(1, 2))

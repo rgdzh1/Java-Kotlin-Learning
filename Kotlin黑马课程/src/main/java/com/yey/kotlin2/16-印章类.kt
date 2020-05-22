@@ -1,6 +1,4 @@
-package com.yey.kossss2
-
-import com.yey.km.Son
+package com.yey.kotlin2l
 
 // 印章类: 子类类型有限的class,类似枚举一些类
 

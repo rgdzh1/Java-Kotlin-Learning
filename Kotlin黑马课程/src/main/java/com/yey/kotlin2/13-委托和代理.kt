@@ -1,4 +1,4 @@
-package com.yey.gggg
+package com.yey.kotlin2v
 
 interface IWashBowl {
     fun washing()

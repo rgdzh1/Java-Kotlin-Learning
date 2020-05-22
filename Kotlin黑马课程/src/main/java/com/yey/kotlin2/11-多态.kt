@@ -1,4 +1,4 @@
-package com.yey.kbb
+package com.yey.kotlin2xxc
 
 // 多态: 同种功能不同表现形态
 abstract class Human(var name: String) {

@@ -1,4 +1,4 @@
-package com.yey.koxxx
+package com.yey.kotlin2zb
 
 
 interface IWashBowl {

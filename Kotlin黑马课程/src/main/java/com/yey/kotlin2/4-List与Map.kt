@@ -1,4 +1,4 @@
-package com.yey.kotl
+package com.yey.kotlin2r
 
 import java.util.*
 

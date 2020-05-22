@@ -1,4 +1,4 @@
-package com.yey.kotlinl
+package com.yey.kotlin2w
 
 fun main(args: Array<String>) {
     // 定义1-200的数组

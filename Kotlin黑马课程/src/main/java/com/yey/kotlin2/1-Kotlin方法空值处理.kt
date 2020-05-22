@@ -1,4 +1,4 @@
-package com.yey.kotlin2
+package com.yey.kotlin2q
 
 // food: String? 加问号表示food参数可以接收null
 fun eat(food: String?): String {

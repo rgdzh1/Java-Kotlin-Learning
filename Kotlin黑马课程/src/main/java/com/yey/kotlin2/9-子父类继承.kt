@@ -1,4 +1,4 @@
-package com.yey.km
+package com.yey.kotlin2a
 
 // 封装: 隐藏内部实现细节
 // 继承: 一个对象直接使用另一个对象的属性和方法

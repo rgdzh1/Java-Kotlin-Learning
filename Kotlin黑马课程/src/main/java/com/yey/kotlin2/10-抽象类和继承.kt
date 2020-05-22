@@ -1,4 +1,4 @@
-package com.yey.klll
+package com.yey.kotlin2zzzz
 
 
 abstract class Human(var name: String) {

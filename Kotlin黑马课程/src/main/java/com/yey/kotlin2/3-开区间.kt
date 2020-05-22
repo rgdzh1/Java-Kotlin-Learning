@@ -1,6 +1,4 @@
-package com.yey.kotp
-
-import java.lang.reflect.Type
+package com.yey.kotlin2e
 
 fun main(args: Array<String>) {
     // 左闭右开区间
