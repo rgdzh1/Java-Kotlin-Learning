@@ -18,7 +18,12 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
-
+import retrofit2.http.GET;
+import retrofit2.http.Path;
+interface GitHubService {
+    @GET("users/{user}/repos")
+    Call<List<Repo>> listRepos(@Path("user") String user);
+}
 public class MainActivity extends AppCompatActivity {
 
     private String TAG = "MainActivity";
@@ -54,3 +59,5 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 }
+
+
