@@ -5,13 +5,19 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 
-import java.io.IOException;
+import com.google.gson.Gson;
 
-import okhttp3.Call;
-import okhttp3.Callback;
+import java.io.IOException;
+import java.util.List;
+
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
-import okhttp3.Response;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -21,22 +27,29 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        String url = "http://wwww.baidu.com";
-        OkHttpClient okHttpClient = new OkHttpClient();
-        final Request request = new Request.Builder()
-                .url(url)
-                .build();
-        Call call = okHttpClient.newCall(request);
-        call.execute()
-        call.enqueue(new Callback() {
+        Retrofit retrofit =
+                new Retrofit.Builder()
+                        .baseUrl("https://api.github.com/")
+                        .addConverterFactory(GsonConverterFactory.create())
+                        .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+                        .build();
+
+        GitHubService service = retrofit.create(GitHubService.class);
+        Call<List<Repo>> call = service.listRepos("octocat");
+        try {
+            call.execute();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        call.enqueue(new Callback<List<Repo>>() {
             @Override
-            public void onFailure(Call call, IOException e) {
-                Log.d(TAG, "onFailure: ");
+            public void onResponse(Call<List<Repo>> call, Response<List<Repo>> response) {
+
             }
 
             @Override
-            public void onResponse(Call call, Response response) throws IOException {
-                Log.d(TAG, "onResponse: " + response.body().string());
+            public void onFailure(Call<List<Repo>> call, Throwable t) {
+
             }
         });
     }
