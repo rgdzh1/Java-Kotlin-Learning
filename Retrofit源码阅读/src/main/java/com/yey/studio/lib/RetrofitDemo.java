@@ -35,6 +35,7 @@ public class RetrofitDemo {
                         .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                         .build();
 
+
         GitHubService service = retrofit.create(GitHubService.class);
         Call<Object> call = service.listRepos("octocat");
 //        try {
