@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <bytecodeTargetLevel>
+      <module name="Kotlin程序开发入门精要" target="1.7" />
+      <module name="Kotlin黑马课程-1" target="1.7" />
+      <module name="Kotlin黑马课程-2" target="1.7" />
+      <module name="Proxy" target="1.7" />
+    </bytecodeTargetLevel>
+  </component>
+</project>

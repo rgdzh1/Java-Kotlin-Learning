@@ -42,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
         GitHubService service = retrofit.create(GitHubService.class);
         Call<List<Repo>> call = service.listRepos("octocat");
         try {
-            call.execute();
+            Response<List<Repo>> execute = call.execute();
         } catch (IOException e) {
             e.printStackTrace();
         }
