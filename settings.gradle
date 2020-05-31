@@ -1,6 +1,3 @@
 rootProject.name='Kotlin-Study'
-include ':Kotlin程序开发入门精要'
-include ':Kotlin黑马课程-1'
-include ':Kotlin黑马课程-2'
-include ':myapplication'
-include ':Proxy'
+include ':Retrofit源码阅读'
+include ':动态代理案例'

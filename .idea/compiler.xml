@@ -5,7 +5,9 @@
       <module name="Kotlin程序开发入门精要" target="1.7" />
       <module name="Kotlin黑马课程-1" target="1.7" />
       <module name="Kotlin黑马课程-2" target="1.7" />
+      <module name="lib" target="1.7" />
       <module name="Proxy" target="1.7" />
+      <module name="动态代理案例" target="1.7" />
     </bytecodeTargetLevel>
   </component>
 </project>
