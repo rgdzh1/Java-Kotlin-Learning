@@ -3,6 +3,7 @@ package com.yey.kotlin.proxy.dtdl;
 import java.lang.reflect.Proxy;
 
 public class Client {
+
     // 动态代理:代理类在程序运行时创建的代理方式
     public static void main(String[] args) {
         Man man = new Man();
