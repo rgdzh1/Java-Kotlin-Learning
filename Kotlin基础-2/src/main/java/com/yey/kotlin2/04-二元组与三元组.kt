@@ -1,5 +1,6 @@
 package com.yey.kot5555
 
+
 fun main(args: Array<String>) {
     // 定义二元元组
     val pair = Pair<String, Int>("张三", 15)
@@ -12,4 +13,7 @@ fun main(args: Array<String>) {
     println(triple.second)
     println(triple.third)
 }
+
+
+
 
