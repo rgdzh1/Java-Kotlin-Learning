@@ -1,3 +1,4 @@
 rootProject.name='Java-Kotlin-Learning'
 include ':Retrofit源码阅读'
 include ':动态代理案例'
+include ':泛型上限下限'

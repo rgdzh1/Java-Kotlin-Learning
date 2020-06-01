@@ -1,4 +1,4 @@
-package com.yey.studio.lib;
+package com.yey.generic;
 
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
