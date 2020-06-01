@@ -1,4 +1,2 @@
 rootProject.name='Java-Kotlin-Learning'
-include ':Kotlin程序开发入门精要'
-include ':Kotlin黑马课程-1'
-include ':Kotlin黑马课程-2'
+include ':泛型'
