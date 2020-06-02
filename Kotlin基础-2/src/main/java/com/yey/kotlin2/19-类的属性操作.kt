@@ -22,7 +22,7 @@ class `19-类的属性操作` {
 
     class Student {
         var name = "张三"
-        private set
+            private set
         var age = 20
     }
 
@@ -34,5 +34,33 @@ class `19-类的属性操作` {
         println(s.name)
         s.age = 200
         println(s.age) // age属性的set方法与get方法都是可以使用的
+    }
+
+    class Kid {
+        var name = "本本"
+            set(value) {
+                // this.name = value 看似使用等于号赋值,实则调用了name属性的set方法,
+                // 这样坑就来了,最终会造成递归调用,最后导致内存溢出.
+                // this.name = value
+                // 所以,就有了field字段,它代表的就是name属性
+                // set()方法在哪个属性下方,field就代表该属性.
+                field = value
+            }
+        var age = 1
+            set(value) {
+                if (value > 2) {
+                    println("age 不符合要求")
+                } else {
+                    // 此时field代表age属性
+                    field = value
+                }
+            }
+    }
+    @Test
+    fun 修改set与get方法(){
+        val k=Kid()
+        k.age = 18
+        println(k.age)
+        println(k.name)
     }
 }
