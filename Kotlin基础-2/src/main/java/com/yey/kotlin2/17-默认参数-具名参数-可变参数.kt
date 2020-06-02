@@ -28,6 +28,7 @@ class `17-默认参数-具名参数-可变参数` {
     }
 
     fun adds(vararg arr: Int): Int {
+        // Kotlin中参数是不允许修改了的,如果想要修改arr数组,可以重新定义一个局部变量接收arr数组,然后修改这个局部变量.
         var result = 0
         arr.forEach {
             result += it
