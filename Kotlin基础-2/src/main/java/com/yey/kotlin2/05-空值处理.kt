@@ -6,7 +6,7 @@ class `05-空值处理` {
 
     @Test
     fun test() {
-        // 类型默认标记为非空
+        // str变量默认标记为非空
         // var str: String = null 赋值空值会编译报错
         // (?) 将类型标记为可空
         var str1: String? = null
