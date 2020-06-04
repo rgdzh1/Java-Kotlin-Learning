@@ -48,17 +48,24 @@ class `19-类的属性操作` {
             }
         var age = 1
             set(value) {
-                if (value > 2) {
+                if (value < 2) {
                     println("age 不符合要求")
                 } else {
                     // 此时field代表age属性
                     field = value
                 }
             }
+            // 重写属性get()
+            // 他最后也不能使用return age, 不然也和上面说的那样造成了递归调用了.
+            get() {
+                return field
+                // return 10
+            }
     }
+
     @Test
-    fun 修改set与get方法(){
-        val k=Kid()
+    fun 修改set与get方法() {
+        val k = Kid()
         k.age = 18
         println(k.age)
         println(k.name)
