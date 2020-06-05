@@ -75,7 +75,6 @@ public class RxJavaDemo {
                         System.out.println("onSubscribe");
                     }
 
-
                     @Override
                     public void onNext(Integer integer) {
                         System.out.println("onNext: " + integer);
