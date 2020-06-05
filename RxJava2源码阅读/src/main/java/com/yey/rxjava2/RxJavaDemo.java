@@ -65,6 +65,7 @@ public class RxJavaDemo {
             public void subscribe(ObservableEmitter<Integer> emitter) throws Exception {
                 System.out.println("被观察者发射数据线程: " + Thread.currentThread().getId());
                 emitter.onNext(100);
+
             }
         })
                 .subscribeOn(Schedulers.io()) // 被观察者发射消息从io线程
