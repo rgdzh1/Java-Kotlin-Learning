@@ -18,7 +18,7 @@ class `43-伴生对象` {
         // 访问非静态属性
         val person = Person()
         println(person.age)
-        // 访问静态属性
+        // 访问静态属性,直接类名称调用
         println(Person.name)
     }
 }

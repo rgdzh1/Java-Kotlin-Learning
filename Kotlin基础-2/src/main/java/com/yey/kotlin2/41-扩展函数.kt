@@ -15,7 +15,7 @@ class `41-扩展函数` {
     //对String进行扩展
     // ? 表示安全调用符号
     fun String?.jugeEmpty(): Boolean {
-        // 扩展函数可以方法对象中的方法,属性等.
+        // 扩展函数可以访问对象中的方法,属性等.
         return this == null || this.length == 0
     }
 
@@ -33,6 +33,8 @@ class `41-扩展函数` {
         // 创建子类对象调用父类扩展方法
         val children = Children()
         children.eat()
+        // 父类扩展函数
+        Person().eat()
     }
 
 }
