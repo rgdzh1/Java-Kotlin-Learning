@@ -2,8 +2,8 @@ package com.yey.kotlin2
 
 import org.junit.Test
 
-class Person {}
 class `12-数组` {
+    class Person {}
     @Test
     fun 数组创建() {
         // 数组泛型为int
