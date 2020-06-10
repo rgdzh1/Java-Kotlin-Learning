@@ -1,4 +1,2 @@
 rootProject.name='Java-Kotlin-Learning'
-include ':泛型'
-include ':动态代理'
 include ':重学Dagger2'
