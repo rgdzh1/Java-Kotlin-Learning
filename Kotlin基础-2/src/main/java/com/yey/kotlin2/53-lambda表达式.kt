@@ -122,7 +122,7 @@ class `53-lambda表达式` {
 
     @Test
     fun 查看indexOffFirst(){
-        val arrayOf = arrayOf("林大瞎", "风大")
+        val arrayOf = arrayOf("林大瞎", "风大","林大傻")
         // 1. Array<out T>.indexOfFirst : indexOfFirst是Array的扩展函数
         // 2. indexOfFirst(predicate: (T) -> Boolean) 接收的参数类型是方法类型,该lambda表达式接收一个泛型参数,
         // 3. indices 为Array的长度
@@ -141,5 +141,4 @@ class `53-lambda表达式` {
         }
         println(arrayOf[indexOfFirst])
     }
-
 }
