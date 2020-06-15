@@ -7,30 +7,30 @@ import javax.inject.Singleton;
 
 import dagger.Component;
 
-class User {
+class Tiger {
     @Inject
-    public User() {
+    public Tiger() {
     }
 
-    public void eat() {
-        System.out.println("打印方法");
+    public void sleep() {
+        System.out.println("Tiger sleeping");
     }
 }
 
 @Singleton
 @Component
-interface ContainerComponent {
-    Container inject(Container container);
+interface ZooComponent {
+    Zoo inject(Zoo zoo);
 }
 
-public class Container {
+public class Zoo {
     @Inject
-    User user;
+    Tiger tiger;
 
     @Test
     public void 最简单的案例() {
         // DaggerContainerComponent.builder().build().inject(this);
-        DaggerContainerComponent.create().inject(this);
-        user.eat();
+        DaggerZooComponent.create().inject(this);
+        tiger.sleep();
     }
 }
