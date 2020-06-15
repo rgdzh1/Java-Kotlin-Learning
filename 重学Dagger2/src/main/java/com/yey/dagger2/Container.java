@@ -12,15 +12,15 @@ class User {
     public User() {
     }
 
-    public void 方法() {
+    public void eat() {
         System.out.println("打印方法");
     }
 }
 
 @Singleton
 @Component
-interface 注射器 {
-    Container 将对象注入容器(Container container);
+interface ContainerComponent {
+    Container inject(Container container);
 }
 
 public class Container {
@@ -29,8 +29,8 @@ public class Container {
 
     @Test
     public void 最简单的案例() {
-        // Dagger注射器.builder().build().将对象注入容器(this);
-        Dagger注射器.create().将对象注入容器(this);
-        user.方法();
+        // DaggerContainerComponent.builder().build().inject(this);
+        DaggerContainerComponent.create().inject(this);
+        user.eat();
     }
 }
