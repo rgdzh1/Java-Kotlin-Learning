@@ -41,6 +41,7 @@ class ZooModule {
     }
 }
 
+
 // 注射器
 // @Component: 该注解是用来创造对象提供方和对象使用间的桥梁,如何将对象赋值给成员变量都是由它来做的.
 @Component(modules = {ZooModule.class})
