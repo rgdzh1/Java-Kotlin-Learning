@@ -37,7 +37,8 @@ interface ZooComponent {
 }
 ```
 ##### Dagger2生成代码阅读
-> 主要说将具有依赖关系的不同对象加入到注射器中,注射器会根据对象使用者的需求来自动处理这些依赖关系.
+> 主要分析将具有依赖关系的不同对象加入到注射器中,注射器会根据对象使用者的需求来自动处理这些依赖关系.
+
 就着上面的案例来看下Degger2生成的代码,生成的代码在`build\generated\sources\annotationProcessor\..`文件夹中.
 1. `DaggerZooComponent.create()`
 `create()`用来生成`DaggerZooComponent`对象,`DaggerZooComponent`的父类是`ZooComponent`接口,它重写了接口中的`inject()`方法.

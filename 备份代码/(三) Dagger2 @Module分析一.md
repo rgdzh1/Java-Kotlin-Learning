@@ -44,7 +44,8 @@ interface ZooComponent {
 }
 ```
 ##### Dagger2生成代码阅读
-> 主要说的是`@Module`,`@Provides`注解作为对象工厂给注射器使用.
+> 主要分析的是`@Module`,`@Provides`注解作为对象工厂给注射器使用.
+
 就着上面的案例来看下Degger2生成的代码,生成的代码在`build\generated\sources\annotationProcessor\..`文件夹中.
 1. `DaggerZooComponent.create()`
 `create()`用来生成`DaggerZooComponent`对象,`DaggerZooComponent`的父类是`ZooComponent`接口,它重写了接口中的`inject()`方法.

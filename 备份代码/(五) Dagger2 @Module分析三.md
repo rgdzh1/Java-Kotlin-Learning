@@ -1,10 +1,6 @@
 ##### 代码示例
 ```java
 class Food {
-    // @Inject:该注解用于类构造方法上表示该类可以被Dagger2实例化对象后供注射器使用.
-    @Inject
-    public Food() {
-    }
 }
 class Tiger {
     // 假如老虎需要食物
@@ -14,6 +10,14 @@ class Tiger {
     }
     public void sleep() {
         System.out.println("Tiger sleeping");
+    }
+}
+// 为注射器提供工厂类
+@Module
+class FoodModule {
+    @Provides
+    public Food providerFood() {
+        return new Food();
     }
 }
 // 为注射器提供工厂类
@@ -33,29 +37,33 @@ public class Zoo {
     Tiger tiger;
 
     @Test
-    public void 案例四() {
+    public void 案例五() {
         DaggerZooComponent.create().inject(this);
         tiger.sleep();
     }
 }
 // 注射器
 // @Component: 该注解是用来创造对象提供方和对象使用间的桥梁,如何将对象赋值给成员变量都是由它来做的.
-// (modules = {ZooModule.class}): 表示该注射器可以使用ZooModule对象工厂提供方法.
-@Component(modules = {ZooModule.class})
+// (modules = {ZooModule.class,FoodModule.class}): 表示该注射器可以使用ZooModule,FoodModule对象工厂提供方法.
+@Component(modules = {ZooModule.class,FoodModule.class})
 interface ZooComponent {
     Zoo inject(Zoo zoo);
 }
 ```
 ##### Dagger2生成代码阅读
-> 主要说Module中的方法与某对象之间产生了依赖关系，将他们两个加入同一个注射器中，注射器会根据对象使用者的需求来自动处理Module工厂方法与某对象之间的依赖关系.
+> 主要分析不同Module中的方法产生了依赖关系，将两个Module加入同一个注射器中，注射器会根据对象使用者的需求来自动处理两个Module间的依赖关系.
+
 就着上面的案例来看下Degger2生成的代码,生成的代码在`build\generated\sources\annotationProcessor\..`文件夹中.
 1. `DaggerZooComponent.create()`
 `create()`用来生成`DaggerZooComponent`对象,`DaggerZooComponent`的父类是`ZooComponent`接口,它重写了接口中的`inject()`方法.
 ```java
 final class DaggerZooComponent implements ZooComponent {
+    // 两个工厂对象
+    private final FoodModule foodModule; 
     private final ZooModule zooModule;
     // 由Builder.build()创建DaggerZooComponent对象.
-    private DaggerZooComponent(ZooModule zooModuleParam) {
+    private DaggerZooComponent(ZooModule zooModuleParam, FoodModule foodModuleParam) {
+      this.foodModule = foodModuleParam;
       this.zooModule = zooModuleParam;
     }
     // create()方法创建DaggerZooComponent()对象
@@ -72,8 +80,12 @@ final class DaggerZooComponent implements ZooComponent {
             if (zooModule == null) {
               this.zooModule = new ZooModule();
             }
-            // 将ZooModule工厂对象存储在DaggerZooComponent对象中
-            return new DaggerZooComponent(zooModule);
+            // 如果FoodModule为null,那么就创建该对象.FoodModule代表工厂.
+            if (foodModule == null) {
+              this.foodModule = new FoodModule();
+            }
+            // 将ZooModule,FoodModule存储在DaggerZooComponent对象中
+            return new DaggerZooComponent(zooModule, foodModule);
         }
     }
 }
@@ -110,11 +122,24 @@ final class DaggerZooComponent implements ZooComponent {
             // 从这里可以看出，只要将Module或者对象加入到注射器中，Module和对象间的依赖注射器都会自动处理好。
             return ZooModule_ProviderTigerFactory.providerTiger(zooModule, new Food());
         } 
+    private Tiger getTiger() {
+        // 由foodModule获取food对象
+        Food food = FoodModule_ProviderFoodFactory.providerFood(foodModule);
+        // 由zooModule获取tiger对象
+        Tiger tiger = ZooModule_ProviderTigerFactory.providerTiger(zooModule, food);
+        return tiger;
+    }
+}
+public final class FoodModule_ProviderFoodFactory implements Factory<Food> {
+    public static Food providerFood(FoodModule instance) {
+        // instance: 为FoodModule类，它的providerFood()作用是返回food对象。
+        return Preconditions.checkNotNull(instance.providerFood(), "Cannot return null from a non-@Nullable @Provides method");
+    }
 }
 public final class ZooModule_ProviderTigerFactory implements Factory<Tiger> {
     public static Tiger providerTiger(ZooModule instance, Object food) {
         // instance: 为ZooModule类，它的providerTiger(Food food)作用是返回Tiger对象。
-        // food： 为上一步中由注射器创建的Food对象，Food类的构造被方法标注了@Inject。
+        // food对象： 为上一步中由FoodModule_ProviderFoodFactory.providerFood(foodModule)方法获取到的。
         return Preconditions.checkNotNull(instance.providerTiger((Food) food), "Cannot return null from a non-@Nullable @Provides method");
     }
 }
