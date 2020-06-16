@@ -7,36 +7,46 @@ import javax.inject.Provider;
 import javax.inject.Qualifier;
 import javax.inject.Singleton;
 
+import dagger.Binds;
 import dagger.Component;
 import dagger.Lazy;
 import dagger.Module;
 import dagger.Provides;
 
-class Tiger {
+abstract class Animal {
+    abstract void sleep();
+}
+
+class Tiger extends Animal {
+    @Inject
+    public Tiger() {
+    }
+
+    @Override
     public void sleep() {
         System.out.println("Tiger sleeping");
     }
 }
+
+
 @Module
-class ZooModule {
-    @Provides
-    public Tiger providerTiger() {
-        return new Tiger();
-    }
+abstract class ZooModule {
+    @Binds
+    abstract Animal bindTiger(Tiger tiger);
 }
+
 @Component(modules = {ZooModule.class})
 interface ZooComponent {
     Zoo inject(Zoo zoo);
 }
+
 public class Zoo {
     @Inject
-    Lazy<Tiger> tigerLazy;
-    @Inject
-    Provider<Tiger> tigerProvider;
+    Tiger tiger;
+
     @Test
     public void 案例十() {
         DaggerZooComponent.create().inject(this);
-        tigerLazy.get().sleep();
-        tigerProvider.get().sleep();
+        tiger.sleep();
     }
 }
