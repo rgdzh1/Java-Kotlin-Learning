@@ -1,35 +1,3 @@
-##### 未研究的案例 
-
-3. 研究单例注释，注射器之间的依赖不允许使用同一个单例研究
-4. @Qualifier ： https://www.jianshu.com/p/e521bd239cd9
-5. Dagger2之Lazy和Provider（懒加载） ： https://blog.csdn.net/wenyingzhi/article/details/80032081?utm_medium=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-1.nonecase&depth_1-utm_source=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-1.nonecase
-6. @Scope https://www.jianshu.com/p/fcd11506b85d
-7. @Binds https://www.jianshu.com/p/8bb4651f0fbf    ||  https://my.oschina.net/zzxzzg/blog/1541916
-8. 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 ##### 代码示例
 假如`PlaygroundComponent`注射器需要`ZooComponent`提供对象.
 ```java

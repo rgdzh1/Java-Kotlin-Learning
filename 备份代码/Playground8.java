@@ -1,14 +1,12 @@
 package com.yey.dagger2;
 
+
 import org.junit.Test;
 
 import javax.inject.Inject;
-import javax.inject.Provider;
-import javax.inject.Qualifier;
 import javax.inject.Singleton;
 
 import dagger.Component;
-import dagger.Lazy;
 import dagger.Module;
 import dagger.Provides;
 
@@ -17,26 +15,37 @@ class Tiger {
         System.out.println("Tiger sleeping");
     }
 }
+
 @Module
 class ZooModule {
+    @Singleton
     @Provides
     public Tiger providerTiger() {
         return new Tiger();
     }
 }
+
+@Singleton
 @Component(modules = {ZooModule.class})
 interface ZooComponent {
-    Zoo inject(Zoo zoo);
+    Tiger provider();
 }
-public class Zoo {
+
+@MyScope
+@Component(dependencies = {ZooComponent.class})
+interface PlaygroundComponent {
+    Playground inject(Playground playground);
+}
+
+
+public class Playground {
     @Inject
-    Lazy<Tiger> tigerLazy;
-    @Inject
-    Provider<Tiger> tigerProvider;
+    Tiger tiger;
+
     @Test
-    public void 案例十() {
-        DaggerZooComponent.create().inject(this);
-        tigerLazy.get().sleep();
-        tigerProvider.get().sleep();
+    public void 案例九() {
+        ZooComponent zooComponent = DaggerZooComponent.create();
+        DaggerPlaygroundComponent.builder().zooComponent(zooComponent).build().inject(this);
+        tiger.sleep();
     }
 }

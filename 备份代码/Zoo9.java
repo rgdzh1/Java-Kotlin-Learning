@@ -3,40 +3,62 @@ package com.yey.dagger2;
 import org.junit.Test;
 
 import javax.inject.Inject;
-import javax.inject.Provider;
 import javax.inject.Qualifier;
 import javax.inject.Singleton;
 
 import dagger.Component;
-import dagger.Lazy;
 import dagger.Module;
 import dagger.Provides;
 
 class Tiger {
+    String name;
+
+    public Tiger(String name) {
+        this.name = name;
+    }
+
+    public Tiger() {
+    }
+
     public void sleep() {
         System.out.println("Tiger sleeping");
     }
 }
+
 @Module
 class ZooModule {
+
+    @Tiger1
     @Provides
-    public Tiger providerTiger() {
+    public Tiger providerTiger_1() {
         return new Tiger();
     }
+
+    @Tiger2
+    @Provides
+    public Tiger providerTiger_2() {
+        return new Tiger("米饭");
+    }
 }
+
 @Component(modules = {ZooModule.class})
 interface ZooComponent {
     Zoo inject(Zoo zoo);
 }
+
 public class Zoo {
+    // 使用自定义Qualifier注解,用以区分tiger1到底使用哪个对象.
+    @Tiger1
     @Inject
-    Lazy<Tiger> tigerLazy;
+    Tiger tiger1;
+    @Tiger2
     @Inject
-    Provider<Tiger> tigerProvider;
+    Tiger tiger2;
+
     @Test
-    public void 案例十() {
+    public void 案例九() {
         DaggerZooComponent.create().inject(this);
-        tigerLazy.get().sleep();
-        tigerProvider.get().sleep();
+        tiger1.sleep();
+        tiger2.sleep();
     }
 }
