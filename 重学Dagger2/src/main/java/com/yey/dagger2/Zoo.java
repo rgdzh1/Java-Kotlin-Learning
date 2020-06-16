@@ -27,12 +27,26 @@ class Tiger extends Animal {
         System.out.println("Tiger sleeping");
     }
 }
+class Cat extends Animal {
+    @Inject
+    public Cat() {
+    }
+
+    @Override
+    public void sleep() {
+        System.out.println("Cat sleeping");
+    }
+}
 
 
 @Module
 abstract class ZooModule {
+    // 这样写是可以的,但是容器中使用的时候需要明确类型接收,不能用父类去接收了.
     @Binds
     abstract Animal bindTiger(Tiger tiger);
+
+    @Binds
+    abstract Animal bindCat(Cat cat);
 }
 
 @Component(modules = {ZooModule.class})
