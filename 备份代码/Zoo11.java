@@ -9,7 +9,6 @@ import java.lang.annotation.Target;
 import java.util.ArrayList;
 import java.util.Map;
 import java.util.Set;
-import java.util.function.BiConsumer;
 import java.util.function.Consumer;
 
 import javax.inject.Inject;
@@ -34,50 +33,82 @@ import static java.lang.annotation.RetentionPolicy.RUNTIME;
 abstract class Animal {
     abstract void sleep();
 }
+
 class Tiger extends Animal {
     @Inject
     public Tiger() {
     }
+
     @Override
     public void sleep() {
         System.out.println("Tiger sleeping");
     }
 }
+
 class Cat extends Animal {
     @Inject
     public Cat() {
     }
+
     @Override
     public void sleep() {
         System.out.println("Cat sleeping");
     }
 }
 
+//@Module
+//class ZooModule {
+//    @Singleton
+//    @Provides
+//    @IntoSet
+//    public Animal providerTiger() {
+//        return new Tiger();
+//    }
+//    @Singleton
+//    @Provides
+//    @IntoSet
+//    public Animal providerCat() {
+//        return new Cat();
+//    }
+//}
+
 @Module
 abstract class ZooModule {
-    @IntoMap
-    @AnimalKey(Tiger.class)
+    @Singleton
+    @IntoSet
     @Binds
     abstract Animal providerTiger(Tiger tiger);
-    @IntoMap
-    @AnimalKey(Cat.class)
+    @Singleton
+    @IntoSet
     @Binds
     abstract Animal providerCat(Cat cat);
 }
+
+@Singleton
 @Component(modules = {ZooModule.class})
 interface ZooComponent {
     void inject(Zoo zoo);
 }
+
 public class Zoo {
     @Inject
-    Map<Class<? extends Animal>, Animal> map;
+    Set<Animal> set0;
+    @Inject
+    Set<Animal> set1;
     @Test
     public void 案例十() {
         DaggerZooComponent.create().inject(this);
-        map.forEach(new BiConsumer<Class<? extends Animal>, Animal>() {
+        System.out.println(set0.hashCode());
+        set0.forEach(new Consumer<Animal>() {
             @Override
-            public void accept(Class<? extends Animal> aClass, Animal animal) {
-                System.out.println(aClass);
+            public void accept(Animal animal) {
+                animal.sleep();
+            }
+        });
+        System.out.println(set1.hashCode());
+        set1.forEach(new Consumer<Animal>() {
+            @Override
+            public void accept(Animal animal) {
                 animal.sleep();
             }
         });
