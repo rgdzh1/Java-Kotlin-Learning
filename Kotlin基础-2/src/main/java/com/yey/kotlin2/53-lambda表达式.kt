@@ -105,8 +105,24 @@ class `53-lambda表达式` {
         }()
     }
 
+    class Food {
+        fun eat() {
+            println("吃饭")
+        }
+    }
+    fun tools(f: Food.() -> Unit) {
+        Food().f()
+    }
     @Test
-    fun 查看Kotlin中的lambda表达式(){
+    fun 好好体会下吧() {
+        tools {
+            eat()
+        }
+    }
+
+
+    @Test
+    fun 查看Kotlin中的lambda表达式() {
         // 阅读下forEach lambda表达
         // 1. CharSequence.forEach() 代表的是对字符串的扩展函数
         // 2. action: (Char) -> Unit 表示forEach中接收的是一个函数类型的参数
@@ -121,8 +137,8 @@ class `53-lambda表达式` {
     }
 
     @Test
-    fun 查看indexOffFirst(){
-        val arrayOf = arrayOf("林大瞎", "风大","林大傻")
+    fun 查看indexOffFirst() {
+        val arrayOf = arrayOf("林大瞎", "风大", "林大傻")
         // 1. Array<out T>.indexOfFirst : indexOfFirst是Array的扩展函数
         // 2. indexOfFirst(predicate: (T) -> Boolean) 接收的参数类型是方法类型,该lambda表达式接收一个泛型参数,
         // 3. indices 为Array的长度
@@ -141,4 +157,6 @@ class `53-lambda表达式` {
         }
         println(arrayOf[indexOfFirst])
     }
+
+
 }
