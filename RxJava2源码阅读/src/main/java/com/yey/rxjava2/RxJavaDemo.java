@@ -23,7 +23,6 @@ public class RxJavaDemo {
         AtomicReference<String> atomicStringReference = new AtomicReference<String>(initialReference);
         String s = atomicStringReference.get();
         System.out.println(s);
-
     }
 
     @Test
