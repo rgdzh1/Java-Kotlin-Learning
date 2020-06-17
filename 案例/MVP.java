@@ -15,6 +15,7 @@ class Application {
 
     }
 }
+
 interface injectP<E> {
     E inject();
 }
