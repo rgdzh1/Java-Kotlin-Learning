@@ -1,2 +1,2 @@
 rootProject.name='Java-Kotlin-Learning'
-include ':重学Dagger2'
+include ':Dagger2'
