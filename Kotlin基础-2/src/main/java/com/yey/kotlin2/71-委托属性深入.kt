@@ -4,6 +4,7 @@ import org.junit.Test
 import kotlin.reflect.KProperty
 
 class A1 {
+
     var name: String by MyDelegate()
 }
 
