@@ -33,4 +33,13 @@ class `38-属性委托` {
         // 儿子最后看压岁钱有多少
         println(bigHeadSon.压岁钱)
     }
+
+    inline fun <reified T> membersOf() = T::class.java.name
+
+    @Test
+    fun aaa() {
+
+        println(membersOf<String>())
+    }
 }
+
