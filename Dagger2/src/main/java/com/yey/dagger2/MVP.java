@@ -45,6 +45,7 @@ abstract class BaseActivity<T> implements IBaseV<T> {
         mPresenter = setPresenter(mPresenter);
     }
 }
+
 // V层实现类
 // <IMy.MyP>: 确定P层对象类型.
 class MyActivity extends BaseActivity<IMy.MyP> implements IMy.MyV {
