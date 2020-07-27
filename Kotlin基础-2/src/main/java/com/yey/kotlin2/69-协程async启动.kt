@@ -4,24 +4,18 @@ import kotlinx.coroutines.*
 import sun.applet.Main
 
 suspend fun main(args: Array<String>) {
-
-    val job1 = coroutineScope {
-        async {
+    coroutineScope {
+        val async1 = async {
             job1()
         }
-    }
-    val job2 = coroutineScope {
-        async {
+        val async2 = async {
             job2()
         }
+//        val result1 = async1.await()
+//        val result2 = async2.await()
+//        println(result1 + "   " + result2)
     }
-    // 可以说async会阻塞主线程
     println(Thread.currentThread().name + "标记位1")// job1与job2执行完成之后才执行这里,说明主线程是被阻塞了.
-//    val str1 = job1.await()
-//    println(str1)
-    println("标记位2")
-//    val str2 = job2.await()
-//    println(str2)
 }
 
 suspend fun job1(): String {
