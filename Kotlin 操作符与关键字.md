@@ -37,6 +37,7 @@ for (i: Int in 3 downTo 1) {
     println(i) // 3.2.1
 }
 ```
+
 11. step 步长
 ```kotlin
 for (i in 1..5 step 2) {
