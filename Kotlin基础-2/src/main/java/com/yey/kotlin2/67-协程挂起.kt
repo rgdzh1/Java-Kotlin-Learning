@@ -9,14 +9,15 @@ import kotlinx.coroutines.launch
  * 另外一种说法,可以被挂起执行,到时间之后从线程池中空闲的线程中恢复执行.
  */
 suspend fun main(args: Array<String>) {
+    println("执行开始,当前协程:${Thread.currentThread().name}")
     val job = coroutineScope {
         launch {
+            println("执行开始,当前协程:${Thread.currentThread().name}")
             delay(8000L)
             println("launch1")
-//            println("执行开始,当前协程:${Thread.currentThread().name}")
             // delay将协程挂起, 到时间之后再从线程池中拿一条空线程出来继续执行.
-//            delay(8000L)
-//            println("执行结束,当前协程:${Thread.currentThread().name}")
+            // delay(8000L)
+            println("执行结束,当前协程:${Thread.currentThread().name}")
         }
         println("1$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$")
         // 1线程可能被调用来执行次协程代码
